@@ -1,1 +1,0 @@
-mips.pipeline.stages.Fetch
