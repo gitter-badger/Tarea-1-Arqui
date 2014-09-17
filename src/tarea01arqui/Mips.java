@@ -6,15 +6,16 @@
 
 package tarea01arqui;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
+import java.io.File;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Scanner;
 
 /**
  *
  * @author b06789
  */
-public class Tarea01Arqui {
+public class Mips {
     
     public int memInstrucciones[];
     public int memDatos[];
@@ -27,22 +28,31 @@ public class Tarea01Arqui {
                 System.err.println("Invalid command line, exactly one argument required");
                 System.exit(1);
             }
-            
-            FileInputStream fstream = new FileInputStream(args[0]);
-            BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
-            String strLine;
-            //Read File Line By Line
-            while ((strLine = br.readLine()) != null)   {
-              // Print the content on the console
-              System.out.println (strLine);
-            }
-            //Close the input stream
-            br.close();
+
+            Mips mips = new Mips(args[0]);
+          
             }catch (Exception e){//Catch exception if any
               System.err.println("Error: " + e.getMessage());
             }
         
         
+        
+    }
+    
+    public Mips(String archivo) throws IOException{
+        
+        Scanner scanner = new Scanner(new File(archivo));
+        memInstrucciones = new int[400];
+        
+        int i = 0;
+        
+        while(scanner.hasNextInt()){
+            memInstrucciones[i++]=scanner.nextInt();
+        }
+        
+        
+        
+        //System.out.println(Arrays.toString(memInstrucciones));
         
     }
     
