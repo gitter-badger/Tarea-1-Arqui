@@ -1,60 +1,89 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Programa hecho por:
+ * Luis Velasquez - B06789
+ * Marco Chacon - B11750
+ * Ricardo Torres - B06324
  */
 
-package tarea01arqui;
+package tareaprog2;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
+//import java.util.Arrays;
 import java.util.Scanner;
+import tareaprog2.pipeline.Decode;
+import tareaprog2.pipeline.Execute;
+import tareaprog2.pipeline.Fetch;
+import tareaprog2.pipeline.Memory;
+import tareaprog2.pipeline.Writeback;
 
-/**
- *
- * @author b06789
- */
+
 public class Mips {
     
-    public int memInstrucciones[];
-    public int memDatos[];
+    private final int memInstrucciones[];
+    private final int memDatos[];
+    
+    private final int registros[];
+    
+    private final int if_id[];
+    private final int id_ex[];
+    private final int ex_mem[];
+    private final int mem_wb[];
+    
+    private final Fetch fetch;
+    private final Decode decode;
+    private final Execute execute;
+    private final Memory memory;
+    private final Writeback writeback;
+    
+    private final int pc;
     
     public static void main(String args[]){
-        try{
-            // Open the file that is the first 
-            // command line parameter
-            if(args.length != 1) {
-                System.err.println("Invalid command line, exactly one argument required");
-                System.exit(1);
-            }
-
-            Mips mips = new Mips(args[0]);
-          
-            }catch (Exception e){//Catch exception if any
-              System.err.println("Error: " + e.getMessage());
-            }
         
-        
+        if(args.length != 1){
+            System.err.println("Comando invalido, se requiere exactamente un argumento");
+            System.exit(1);
+        }else{
+            
+            try{
+                
+                Mips mips = new Mips(args[0]);
+                
+            }catch(Exception e){
+                System.err.println("Error: " + e.getMessage());
+            }
+            
+        }  
         
     }
     
     public Mips(String archivo) throws IOException{
         
         Scanner scanner = new Scanner(new File(archivo));
+        
         memInstrucciones = new int[400];
+        memDatos = new int[100];
         
-        int i = 0;
+        registros = new int[32];
         
+        if_id = new int[5];
+        id_ex = new int[7];
+        ex_mem = new int[6];
+        mem_wb = new int[6]; 
+        
+        pc = 0;
+        
+        int i = 0;      
         while(scanner.hasNextInt()){
             memInstrucciones[i++]=scanner.nextInt();
-        }
+        }     
         
-        
+        fetch = new Fetch();
+        decode = new Decode();
+        execute = new Execute();
+        memory = new Memory();
+        writeback = new Writeback();
         
         //System.out.println(Arrays.toString(memInstrucciones));
-        
     }
-    
-    
 }
