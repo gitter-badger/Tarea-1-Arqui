@@ -1,15 +1,18 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Programa hecho por:
+ * Luis Velasquez - B06789
+ * Marco Chacon - B11750
+ * Ricardo Torres - B06324
  */
 
-package tarea01arqui.pipeline;
+package tareaprog2.pipeline;
 
-/**
- *
- * @author b06789
- */
 public class Memory {
+    
+    public Memory(){
+        
+        
+        
+    }
     
 }
