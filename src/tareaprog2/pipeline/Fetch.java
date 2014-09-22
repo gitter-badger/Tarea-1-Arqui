@@ -31,6 +31,7 @@ public class Fetch extends Thread{
         
         if_id.setIR(memIns.getInstruction(pc.getPC()));
         pc.nextIns();
+        if_id.setRegister(0, pc.getPC());
         
     }
     
