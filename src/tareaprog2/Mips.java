@@ -71,8 +71,8 @@ public class Mips {
         mem_wb = new pipelineRegister(6);     
         
         fetch = new Fetch(if_id,memInstructions,pc);
-        decode = new Decode();
-        execute = new Execute();
+        decode = new Decode(if_id,id_ex,registros);
+        execute = new Execute(ex_mem,id_ex);
         memory = new Memory();
         writeback = new Writeback();
         
